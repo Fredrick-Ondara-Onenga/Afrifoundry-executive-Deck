@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfriFoundry Executive Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FF6B35 0%, #1B4332 50%, #2C5F78 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .deck-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .slide:hover {
+            transform: translateY(-5px);
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(45deg, #FF6B35, #1B4332);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .header-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #FF6B35 0%, #1B4332 50%, #2C5F78 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .mantra {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .slide h2 {
+            color: #1B4332;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            border-left: 5px solid #FF6B35;
+            padding-left: 20px;
+        }
+        
+        .slide h3 {
+            color: #2C5F78;
+            font-size: 1.5rem;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.1), rgba(27, 67, 50, 0.1));
+            border-left: 4px solid #FF6B35;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, #FF6B35, #1B4332);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        
+        .framework-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #FF6B35;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            background: #FF6B35;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .step-letter {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #FF6B35;
+            margin-bottom: 10px;
+        }
+        
+        .step:hover .step-letter {
+            color: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .team-member {
+            background: rgba(255, 107, 53, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1B4332;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            font-weight: 600;
+            color: #2C5F78;
+            margin-bottom: 10px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #FF6B35 0%, #1B4332 50%, #2C5F78 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .contact-info {
+            background: rgba(255, 107, 53, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-label {
+            font-weight: 600;
+            color: #1B4332;
+            margin-bottom: 5px;
+        }
+        
+        .ecosystem-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .ecosystem-box {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid #FF6B35;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .ecosystem-arrow {
+            font-size: 2rem;
+            color: #FF6B35;
+            font-weight: bold;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            color: #555;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        a {
+            color: #FF6B35;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .framework-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ecosystem-container {
+                flex-direction: column;
+            }
+            
+            .ecosystem-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="deck-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide header-slide">
+            <div class="slide-number">01</div>
+            <div class="logo">AfriFoundry</div>
+            <div class="tagline">The Validation Engine for Africa's Grassroots Innovators</div>
+            <div class="mantra">Bridging the gap between raw ideas and community-ready solutions through structured validation.</div>
+            <br>
+            <div style="margin: 30px 0;">
+                <strong>Vision:</strong> An Africa where every young innovator's idea can reach its full potential, creating a future where our communities lead in solving the world's most pressing challenges.
+                <br><br>
+                <strong>Mission:</strong> Think. Build. Heal.
+            </div>
+            <p><strong>Prepared by:</strong> Mark Gakuya, Founder & CEO</p>
+            <p><strong>Date:</strong> October 2025 | <strong>Location:</strong> Mombasa, Kenya</p>
+        </div>
+
+        <!-- Slide 2: Problem -->
+        <div class="slide">
+            <div class="slide-number">02</div>
+            <h2>The Problem: Africa's Innovation Valley of Death</h2>
+            <div class="highlight-box">
+                Brilliant African ideas die before they can walk, trapped in the "first mile" gap between idea and validation.
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500K+</div>
+                    <div>Kenyan youth with technical skills lack validation pathways</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">90%</div>
+                    <div>Grassroots innovations fail before validation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$284B</div>
+                    <div>Annual African infrastructure gap</div>
+                </div>
+            </div>
+            
+            <h3>Critical Ecosystem Gaps:</h3>
+            <ul>
+                <li><strong>No Structured Validation:</strong> Ideas stay in notebooks - never tested in real communities</li>
+                <li><strong>Ethical Blind Spots:</strong> Solutions built without community input lead to poor adoption</li>
+                <li><strong>Top-Down Innovation:</strong> Existing hubs support formed ventures, missing grassroots potential</li>
+                <li><strong>High Risk Barriers:</strong> Cost of failure deters innovators and funders</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Solution -->
+        <div class="slide">
+            <div class="slide-number">03</div>
+            <h2>Our Solution: The AfriFoundry Dual Ecosystem</h2>
+            <div class="highlight-box">
+                We built the missing operating system for grassroots innovation - bridging the gap between raw ideas and structured validation.
+            </div>
+
+            <div class="ecosystem-container">
+                <div class="ecosystem-box">
+                    <h3>Problem Bank</h3>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;">Real problems from:</p>
+                    <ul style="margin-top: 0.5rem; text-align: left; font-size: 0.9rem;">
+                        <li>Communities</li>
+                        <li>NGO Partners</li>
+                        <li>Government</li>
+                        <li>AI Analysis</li>
+                    </ul>
+                </div>
+
+                <div class="ecosystem-arrow">→</div>
+
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; flex: 2;">
+                    <div class="ecosystem-box" style="background: rgba(67, 233, 123, 0.2); border-color: #43e97b;">
+                        <h3>Innovator Pipeline</h3>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;">External innovators submit ideas → Full D.R.E.A.M. validation</p>
+                    </div>
+
+                    <div class="ecosystem-box" style="background: rgba(79, 172, 254, 0.2); border-color: #4facfe;">
+                        <h3>AfriFoundry Labs</h3>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;">High-impact in-house projects → Full D.R.E.A.M. validation</p>
+                    </div>
+                </div>
+
+                <div class="ecosystem-arrow">→</div>
+
+                <div class="ecosystem-box">
+                    <h3>Scaling Partners</h3>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;">Graduates to:</p>
+                    <ul style="margin-top: 0.5rem; text-align: left; font-size: 0.9rem;">
+                        <li>Incubators</li>
+                        <li>Accelerators</li>
+                        <li>Investors</li>
+                        <li>Market Partners</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Key Insight:</strong> We're the feeder system that strengthens the entire innovation ecosystem.
+            </div>
+        </div>
+
+        <!-- Slide 4: D.R.E.A.M. Framework -->
+        <div class="slide">
+            <div class="slide-number">04</div>
+            <h2>The D.R.E.A.M. Framework</h2>
+            <div class="highlight-box">
+                Our proprietary validation process that systematically turns raw ideas into community-ready solutions.
+            </div>
+            
+            <div class="framework-steps">
+                <div class="step">
+                    <div class="step-letter">D</div>
+                    <strong>Discover</strong><br>
+                    Source ideas via Problem Bank partnerships
+                </div>
+                <div class="step">
+                    <div class="step-letter">R</div>
+                    <strong>Refine</strong><br>
+                    AI-powered analysis + expert mentorship
+                </div>
+                <div class="step">
+                    <div class="step-letter">E</div>
+                    <strong>Evaluate</strong><br>
+                    Ethical review + community validation
+                </div>
+                <div class="step">
+                    <div class="step-letter">A</div>
+                    <strong>Activate</strong><br>
+                    Guided cohort programs + mini-pilots
+                </div>
+                <div class="step">
+                    <div class="step-letter">M</div>
+                    <strong>Magnify</strong><br>
+                    Scale via strategic partnerships
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Every project</strong> - whether from external innovators or our in-house labs - goes through the same rigorous D.R.E.A.M. validation process.
+            </div>
+        </div>
+
+        <!-- Slide 5: Problem Bank -->
+        <div class="slide">
+            <div class="slide-number">05</div>
+            <h2>Secret Weapon: The Problem Bank</h2>
+            <div class="highlight-box">
+                <strong>Demand-Driven Innovation:</strong> We partner with NGOs, communities, and government to source validated, urgent challenges.
+            </div>
+            
+            <h3>How It Works:</h3>
+            <ul>
+                <li><strong>Partnership Sourcing:</strong> We collaborate with NGOs, community organizations, and government agencies to identify urgent, validated challenges</li>
+                <li><strong>Targeted Innovation:</strong> Innovators receive detailed problem briefs with community context, enabling them to build solutions that address specific, real-world needs</li>
+                <li><strong>Built-in Validation:</strong> Partner organizations become pilot testers and provide direct feedback loops, ensuring solutions meet actual community requirements</li>
+                <li><strong>Ethical Framework:</strong> Every problem in our bank undergoes community consent processes and ethical review</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <strong>Current Partnership Example:</strong> Girls I Save Africa has contributed maternal health challenges focusing on improving prenatal care access in rural communities. Our innovators are developing mobile health screening solutions through structured mini-pilots with community health workers.
+            </div>
+        </div>
+
+        <!-- Slide 6: Market Opportunity -->
+        <div class="slide">
+            <div class="slide-number">06</div>
+            <h2>Market Opportunity</h2>
+            <div class="highlight-box">
+                Massive untapped potential in Africa's grassroots innovation ecosystem with $2.4B total addressable market.
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">$2.4B</div>
+                    <div><strong>TAM</strong><br>Total African innovation validation market</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$180M</div>
+                    <div><strong>SAM</strong><br>East African validation market</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$12M</div>
+                    <div><strong>SOM</strong><br>Kenya focus (Years 1-3)</div>
+                </div>
+            </div>
+            
+            <h3>Market Drivers:</h3>
+            <ul>
+                <li><strong>Youth Unemployment Crisis:</strong> 39% youth unemployment driving innovation necessity</li>
+                <li><strong>Infrastructure Gap:</strong> $284B annual gap = massive opportunity for local solutions</li>
+                <li><strong>Mobile Penetration:</strong> 95%+ mobile coverage enabling tech-based validation</li>
+                <li><strong>SDG Alignment:</strong> Global focus on African innovation for sustainable development</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7: Traction -->
+        <div class="slide">
+            <div class="slide-number">07</div>
+            <h2>Traction: Building Momentum</h2>
+            <div class="highlight-box">
+                We've moved from vision to execution with measurable progress across all key metrics.
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">35+</div>
+                    <div>Innovators in Pipeline</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">14</div>
+                    <div>Ideas Submitted</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div>In-House Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div>Expert Mentors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div>Strategic Partnerships</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div>Ethics Board Members</div>
+                </div>
+            </div>
+            
+            <h3>Key Milestones Achieved:</h3>
+            <ul>
+                <li><strong>Live Platform:</strong> Fully functional website with intake and application systems</li>
+                <li><strong>Active Partnerships:</strong> Girls I Save Africa (formal), Swahilipot Hub (advanced discussions)</li>
+                <li><strong>Core Team:</strong> Complete leadership team with clear role definitions</li>
+                <li><strong>Digital Presence:</strong> Multi-platform social media and community engagement</li>
+                <li><strong>Ethics Framework:</strong> Established ethics board with community representation</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: Team -->
+        <div class="slide">
+            <div class="slide-number">08</div>
+            <h2>The Team: Innovators Building for Innovators</h2>
+            <div class="highlight-box">
+                We're solving a problem we've lived. Our team combines technical expertise with grassroots innovation experience.
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-name">Mark Gakuya</div>
+                    <div class="member-role">Founder & CEO</div>
+                    <p>Lived the validation gap with failed hospital AI project. Now building the infrastructure he needed.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Karani Njoroge</div>
+                    <div class="member-role">COO</div>
+                    <p>Operational strategist ensuring flawless execution of the D.R.E.A.M. framework and community engagement.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Fredrick Ondara</div>
+                    <div class="member-role">CTO</div>
+                    <p>Heads technical architecture, AI development, and platform backend systems.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Ian Muriuki</div>
+                    <div class="member-role">Technical Lead</div>
+                    <p>Backend development and prototyping support for innovator projects.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Dorcas Ndinda</div>
+                    <div class="member-role">Community & Growth Lead</div>
+                    <p>Innovator engagement, partnerships, and ecosystem growth strategies.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Lindah Wambui</div>
+                    <div class="member-role">Social Media Manager</div>
+                    <p>Digital presence, brand storytelling, and community engagement.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Business Model -->
+        <div class="slide">
+            <div class="slide-number">09</div>
+            <h2>Business Model: Sustainable Impact</h2>
+            <div class="highlight-box">
+                Multiple revenue streams creating a sustainable engine for African innovation validation.
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">KES 75K</div>
+                    <div>Validation Services<br>(NGOs/Corporates)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">KES 200</div>
+                    <div>AI Subscriptions<br>(Monthly per user)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20-40%</div>
+                    <div>Venture Equity<br>(Successful spin-offs)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3-5%</div>
+                    <div>Success Fees<br>(Scaled solutions)</div>
+                </div>
+            </div>
+            
+            <h3>Revenue Streams:</h3>
+            <ul>
+                <li><strong>Validation-as-a-Service:</strong> KES 50,000-75,000 per project (NGOs/corporates)</li>
+                <li><strong>AI Tool Subscriptions:</strong> USSD (KES 10-50/query), App (KES 200-500/month)</li>
+                <li><strong>Challenge Contracts:</strong> KES 150,000+ (corporate innovation challenges)</li>
+                <li><strong>Venture Building:</strong> Equity (20-40%) in successful spin-offs from AfriFoundry Labs</li>
+                <li><strong>Success Fees:</strong> 3-5% of scaled solution revenue</li>
+            </ul>
+        </div>
+
+        <!-- Slide 10: The Ask -->
+        <div class="slide">
+            <div class="slide-number">10</div>
+            <h2>The Ask: Partner With Us</h2>
+            <div class="highlight-box">
+                <strong>Seeking KES 1.5M for 6-month operational launch and first cohort execution.</strong>
+            </div>
+            
+            <h3>Funding Allocation:</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">30%</div>
+                    <div>Lab Infrastructure<br>& Equipment</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30%</div>
+                    <div>Technology Development<br>(USSD + AI)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20%</div>
+                    <div>Team Operations<br>(6 months)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20%</div>
+                    <div>Legal & Pilot<br>Programs</div>
+                </div>
+            </div>
+            
+            <h3>Partnership Opportunities:</h3>
+            <ul>
+                <li><strong>Seed Funding:</strong> KES 1.5M for operational launch and first cohort</li>
+                <li><strong>Strategic Advisors:</strong> Guide strategy & growth in tech and impact investing</li>
+                <li><strong>Pilot Partners:</strong> Contribute real challenges and test solutions</li>
+                <li><strong>Mentors:</strong> Guide our October cohort of 20 innovators</li>
+                <li><strong>Ethics Board Members:</strong> Ensure community-centered innovation</li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: Vision & Contact -->
+        <div class="slide">
+            <div class="slide-number">11</div>
+            <h2>Vision & Next Steps</h2>
+            
+            <div class="cta-section">
+                <h3>Our Vision</h3>
+                <p style="font-size: 1.2rem; margin: 20px 0;">An Africa where every young innovator's idea can reach its full potential, creating a future where our communities lead in solving the world's most pressing challenges.</p>
+                
+                <div style="font-style: italic; font-size: 1.1rem; margin-top: 30px;">
+                    "We're not just supporting ideas; we're building the infrastructure for Africa's innovation future."
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h3>Ready to Build With Us?</h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-label">Founder & CEO</div>
+                        <div>Mark Gakuya</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <div><a href="mailto:afrifoundry@gmail.com">afrifoundry@gmail.com</a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Website</div>
+                        <div><a href="https://new-advanced-afrifoundry.vercel.app" target="_blank">new-advanced-afrifoundry.vercel.app</a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Social Media</div>
+                        <div>@AfriFoundry</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <strong>WhatsApp Channel:</strong><br>
+                    <span style="font-size: 0.9rem;"><a href="https://whatsapp.com/channel/0029VbB1Yu07T8beQCLSJZ0I" target="_blank">Join our innovation community</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for stats when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Observe all stat items for animation
+        document.querySelectorAll('.stat-item').forEach((item) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Add click smooth scrolling for navigation (optional enhancement)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
